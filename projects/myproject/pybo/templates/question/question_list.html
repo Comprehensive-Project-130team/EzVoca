@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        </form>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+                <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+                <a  href="{{ url_for('auth.register') }}">계정생성</a>
+                <a  href="{{ url_for('auth.index') }}">로그인</a>
+                <a  href="{{ url_for('main.dash') }}">대시보드</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+
+    </table>
+</div>
