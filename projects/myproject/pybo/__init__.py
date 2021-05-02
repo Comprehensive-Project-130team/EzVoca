@@ -1,11 +1,11 @@
 from flask import Flask
-# --------------------------------- [edit] ---------------------------------- #
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+
 import config
+
 db = SQLAlchemy()
 migrate = Migrate()
-# --------------------------------------------------------------------------- #
 
 
 def create_app():
@@ -22,8 +22,6 @@ def create_app():
     from . import models
 
     # 블루프린트
-# --------------------------------------------------------------------------- #
-
     from .views import main_views, auth_views, question_views, answer_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(auth_views.bp)
@@ -31,4 +29,3 @@ def create_app():
     app.register_blueprint(answer_views.bp)
 
     return app
-
