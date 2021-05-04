@@ -1,4 +1,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+   <style>
+      .bd-placeholder-img{
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 <div class="container my-3">
     <table class="table">
         <thead>
@@ -10,17 +27,30 @@
         </thead>
         </form>
         <tbody>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA 모임</a>
+         {% if g.user %}
+            <ul class="navbar-nav px-3">
+              <li class="nav-item text-nowrap">
+                  <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+             </li>
+            </ul>
+          {% endif %}
+     </header>
         {% if question_list %}
         {% for question in question_list %}
         <tr>
             <td>{{ loop.index }}</td>
             <td>
                 <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
-                <a  href="{{ url_for('auth.register') }}">계정생성</a>
+                 {% if question.answer_set|length > 0 %}
+                <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
+                {% endif %}
+                <!--<a  href="{{ url_for('auth.register') }}">계정생성</a>
                 <a  href="{{ url_for('auth.index') }}">로그인</a>
-                <a  href="{{ url_for('main.dash') }}">대시보드</a>
+                <a  href="{{ url_for('main.dash') }}">대시보드</a> -->
             </td>
-            <td>{{ question.create_date }}</td>
+            <td>{{ question.create_date|datetime }}</td>
         </tr>
         {% endfor %}
         {% else %}
@@ -31,4 +61,5 @@
         </tbody>
 
     </table>
+    <a href="{{ url_for('question.create') }}" class="btn btn-primary">글쓰기</a>
 </div>
