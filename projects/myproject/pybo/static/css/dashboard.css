@@ -88,3 +88,30 @@ body {
   border-radius: 0;
 }
 
+
+
+/*
+ * voca_detail.html
+ */
+tr {
+width: 100%;
+display: inline-table;
+table-layout: fixed;
+}
+
+table{
+ height:400px; 
+}
+tbody{
+  overflow-y: scroll;      
+  height: 325px;
+  width: 32%;
+  position: absolute;
+}
+
+.btn-space{
+  margin-right: 5px;
+}
+.bg-color{
+  background-color: pink;
+}
