@@ -42,20 +42,20 @@
     <div class="row py-lg-5">
 <div class = "bg-color"> 
       <div class="col-lg-6 col-md-8 mx-auto">
-              <table class="table table-striped bg-white">
+              <table class="table table-striped bg-white table1">
         <thead>
-        <tr class="thead-dark">
+        <tr class="thead-dark tr1">
             <th>#</th>
             <th>단어</th>
             <th>뜻</th>
         </tr>
         </thead>
         </form>
-        <tbody>
+        <tbody class="tbody1">
      </header>
         {% if question_list %}
         {% for question in question_list %}
-        <tr>
+        <tr class="tr1">
             <td>{{ loop.index }}</td>
             <td>
                 <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
