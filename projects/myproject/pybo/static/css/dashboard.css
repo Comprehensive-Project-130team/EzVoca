@@ -93,16 +93,16 @@ body {
 /*
  * voca_detail.html
  */
-tr {
+.tr1 {
 width: 100%;
 display: inline-table;
 table-layout: fixed;
 }
 
-table{
+.table1{
  height:400px; 
 }
-tbody{
+.tbody1{
   overflow-y: scroll;      
   height: 325px;
   width: 32%;
