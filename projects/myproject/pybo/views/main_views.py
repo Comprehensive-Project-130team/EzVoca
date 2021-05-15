@@ -23,3 +23,7 @@ def dash():
 def voca():
     return render_template("voca.html")
 
+
+@bp.route('/account/')
+def account():
+    return render_template("account.html")
