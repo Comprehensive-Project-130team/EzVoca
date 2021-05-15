@@ -27,3 +27,8 @@ def voca():
 @bp.route('/account/')
 def account():
     return render_template("account.html")
+
+@bp.route('/voca/create/')
+def voca_create():
+    return render_template("voca_create.html")
+
