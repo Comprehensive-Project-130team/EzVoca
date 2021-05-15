@@ -71,7 +71,7 @@
             <!-- 이미지 변경 링크 작성-->
             <a href="#이미지변경링크"> 
                 
-			<img class="card-img-top rounded-circle px-3" src="{{ url_for('static', filename='test.jpg') }}" alt="Profile image" height="400rem">
+			<img class="card-img-top rounded-circle px-3" src="{{ url_for('static', filename='/images/test.jpg') }}" alt="Profile image" height="400rem">
                 </a>
 			<div class="card-body" style="height:auto;">
 				<h5 class="btn btn-temp btn-info border-dark" width="25rem" style="cursor:default">ID : {{ g.user.username }}</h5>
