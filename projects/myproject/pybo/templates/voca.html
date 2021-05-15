@@ -35,7 +35,7 @@
 <div class="container-fluid mr-5">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
+      <div class="position-fixed pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" href="../dash">
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="voca.html">
+            <a class="nav-link active" aria-current="page" href="../voca">
               <span data-feather="file-text"></span>
               단어장
             </a>
@@ -64,9 +64,9 @@
         </ul>
       </div>
     </nav>
-    </div></div>
-<div class="container my-3 p-5">
-    <table class="table table-striped">
+    </div>
+                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <table class="table table-striped">
         <thead>
         <tr class="thead-dark">
             <th>단어장</th>
@@ -74,7 +74,6 @@
             <th>작성자</th>
         </tr>
         </thead>
-        </form>
         <tbody>
         {% if question_list %}
         {% for question in question_list %}
@@ -97,7 +96,12 @@
         </tbody>
 
     </table>
-</div>
+    </main>
+    </div>
+
+
+
+
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
       <script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>
