@@ -19,3 +19,7 @@ def dash():
     return render_template("dashboard.html")
 
 
+@bp.route('/voca/')
+def voca():
+    return render_template("voca.html")
+
