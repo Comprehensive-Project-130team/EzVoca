@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 커스텀 스타일 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- 부트스트랩 -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>회원가입</title>
+</head>
+<body class="background-f99">
+{% block content %}
+    <div class="global-container">
+        <form method="post" class="post-form">
+         <div class="card login-form">
+            <div class="card-body">
+                <Strong>회원가입</Strong>
+                 <div class="card-text">
+                          {{ form.csrf_token }}
+                          {% include "form_erroes.html" %}
+                        <div class="mb-3">
+                            <label for="username">아이디</label>
+                            <input type="text" class="form-control form-control-sm" placeholder="아이디" name="username" id="username"
+                                   value="{{ form.username.data or '' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password1">패스워드</label>
+                            <input type="password" class="form-control form-control-sm" placeholder="패스워드" name="password1" id="password1"
+                                   value="{{ form.password1.data or '' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2">패스워드 확인</label>
+                            <input type="password" class="form-control form-control-sm" placeholder="패스워드 확인" name="password2" id="password2"
+                                   value="{{ form.password2.data or '' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">이메일</label>
+                            <input type="email" class="form-control form-control-sm" placeholder="이메일" name="email" id="email"
+                                   value="{{ form.email.data or '' }}">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <!--회원가입 버튼 / onclick 수정필요-->
+                            <!--Custom-->
+                            <button type="submit" onclick="location.href='#'" class="btn btn-primary btn-block btn-background-f66">
+                                회원가입</button>
+                        </div>
+                      </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

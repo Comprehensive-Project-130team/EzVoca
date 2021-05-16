@@ -1,0 +1,42 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 커스텀 스타일 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- 부트스트랩 -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>회원가입</title>
+</head>
+<body class="background-f99">
+{% block content %}
+    <div class="global-container">
+        <form method="post" class="post-form">
+         <div class="card login-form">
+            <div class="card-body">
+                <Strong>비밀번호 변경</Strong>
+                 <div class="card-text">
+                     {{ form.csrf_token }}
+                     {% include "form_erroes.html" %}
+      <div class="mb-3">
+          <label for="password1">새 비밀번호</label>
+          <input type="password" class="form-control form-control-sm" placeholder="패스워드" name="password1" id="password1"
+                 value="{{ form.password1.data or '' }}">
+      </div>
+    <div class="mb-3">
+        <label for="password2">비밀번호 확인</label>
+        <input type="password" class="form-control form-control-sm" placeholder="패스워드 확인" name="password2" id="password2"
+                                   value="{{ form.password2.data or '' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">변경하기</button>
+                      </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</div>
+</body>
+</html>
