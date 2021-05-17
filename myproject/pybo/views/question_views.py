@@ -13,7 +13,9 @@ bp = Blueprint('question', __name__, url_prefix='/question')
 
 @bp.route('/list/')
 def _list():
+    page = request.args.get('page', type=int, default=1)  # 페이지
     question_list = Question.query.order_by(Question.create_date.desc())#조회결과를 작성일시 기준으로 역순으로 정렬
+    question_list = question_list.paginate(page, per_page=12)
     return render_template('question/question_list.html', question_list=question_list)
 
 
