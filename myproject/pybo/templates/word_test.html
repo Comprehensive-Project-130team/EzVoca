@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EZVOCA 단어테스트</title>    
+    
+<!-- 부트스트랩 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    
+    
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body class="bg-color3">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA</a>
+         {% if g.user %}
+            <ul class="navbar-nav px-3">
+              <li class="nav-item text-nowrap">
+                  <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+             </li>
+            </ul>
+          {% endif %}
+     </header>    
+ <main>
+
+   
+  <section class="my-5 p-2 text-center container border bg-color">
+    <div class="row py-lg-5">
+      <div class="col-lg-10 mx-auto">
+
+<button class="btn btn-lg bg-color2 border-dark col-md-10 text-center" type="button" style="height: 100px; cursor:default;"><h2>단어</h2></button>
+          <input class="btn btn-lg bg-color4 border-dark my-2 col-md-5 text-center" type="submit" value="보기1" style="height:125px;" onclick="location.href='#'">
+          <input class="btn btn-lg bg-color4 border-dark my-2 col-md-5 text-center" type="submit" value="보기2" style="height:125px;" onclick="location.href='#'">
+          <input class="btn btn-lg bg-color4 border-dark my-2 col-md-5 text-center" type="submit" value="보기3" style="height:125px;" onclick="location.href='#'">
+          <input class="btn btn-lg bg-color4 border-dark my-2 col-md-5 text-center" type="sumbit" value="보기4" style="height:125px;" onclick="location.href='#'">
+          <button class="btn col-md-2 btn-success mt-5" style="cursor:default;">현재단어/단어개수</button>
+
+      </div>
+    </div>
+      </section>
+
+</main>   
+
+</body>
+</html>

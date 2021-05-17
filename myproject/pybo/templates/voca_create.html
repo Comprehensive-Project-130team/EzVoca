@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.82.0">
+<title>EZVOCA DASHBOARD</title>
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+<!-- 부트스트랩 CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<style>
+      .bd-placeholder-img{
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+</style>
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.html">EZVOCA</a>
+{% if g.user %}
+<ul class="navbar-nav px-3">
+	<li class="nav-item text-nowrap">
+	<a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+	</li>
+</ul>
+ {% endif %} </header>
+<div class="container-fluid bg-color3">
+	<div class="container col-md-12 text-center">
+		<form>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-9">
+					<input type="text" class="form-control form-control-lg" id="title" placeholder="단어장 제목 입력">
+				</div>
+				<div class="col-md-1">
+                    <!-- 단어 생성 버튼-->
+					<button type="submit" class="btn btn-success btn-lg">생성</button>
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-10">
+					<input type="text" class="form-control form-control-lg" id="tag" placeholder="단어장 태그 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word1" placeholder="단어1 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean1" placeholder="뜻1 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word2" placeholder="단어2 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean2" placeholder="뜻2 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word3" placeholder="단어3 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean3" placeholder="뜻3 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word4" placeholder="단어4 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean4" placeholder="뜻4 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word5" placeholder="단어5 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean5" placeholder="뜻5 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word6" placeholder="단어6 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean6" placeholder="뜻6 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word7" placeholder="단어7 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean7" placeholder="뜻7 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word8" placeholder="단어8 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean8" placeholder="뜻8 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word9" placeholder="단어9 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean9" placeholder="뜻9 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word10" placeholder="단어10 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean10" placeholder="뜻10 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word11" placeholder="단어11 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean11" placeholder="뜻11 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word12" placeholder="단어12 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean12" placeholder="뜻12 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word13" placeholder="단어13 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean13" placeholder="뜻13 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word14" placeholder="단어14 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean14" placeholder="뜻14 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word15" placeholder="단어15 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean15" placeholder="뜻15 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word16" placeholder="단어16 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean16" placeholder="뜻16 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word17" placeholder="단어17 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean17" placeholder="뜻17 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word18" placeholder="단어18 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean18" placeholder="뜻18 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word19" placeholder="단어19 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean19" placeholder="뜻19 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word20" placeholder="단어20 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean20" placeholder="뜻20 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word21" placeholder="단어21 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean21" placeholder="뜻21 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word22" placeholder="단어22 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean22" placeholder="뜻22 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word23" placeholder="단어23 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean23" placeholder="뜻23 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word24" placeholder="단어24 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean24" placeholder="뜻24 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word25" placeholder="단어25 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean25" placeholder="뜻25 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word26" placeholder="단어26 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean26" placeholder="뜻26 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word27" placeholder="단어27 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean27" placeholder="뜻27 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word28" placeholder="단어28 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean28" placeholder="뜻28 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word29" placeholder="단어29 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean29" placeholder="뜻29 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word30" placeholder="단어30 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean30" placeholder="뜻30 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word31" placeholder="단어31 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean31" placeholder="뜻31 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word32" placeholder="단어32 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean32" placeholder="뜻32 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word33" placeholder="단어33 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean33" placeholder="뜻33 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word34" placeholder="단어34 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean34" placeholder="뜻34 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word35" placeholder="단어35 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean35" placeholder="뜻35 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word36" placeholder="단어36 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean36" placeholder="뜻36 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word37" placeholder="단어37 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean37" placeholder="뜻37 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word38" placeholder="단어38 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean38" placeholder="뜻38 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word39" placeholder="단어39 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean39" placeholder="뜻39 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word40" placeholder="단어40 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean40" placeholder="뜻40 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word41" placeholder="단어41 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean41" placeholder="뜻41 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word42" placeholder="단어42 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean42" placeholder="뜻42 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word43" placeholder="단어43 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean43" placeholder="뜻43 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word44" placeholder="단어44 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean44" placeholder="뜻44 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word45" placeholder="단어45 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean45" placeholder="뜻45 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word46" placeholder="단어46 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean46" placeholder="뜻46 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word47" placeholder="단어47 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean47" placeholder="뜻47 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word48" placeholder="단어48 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean48" placeholder="뜻48 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word49" placeholder="단어49 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean49" placeholder="뜻49 입력">
+				</div>
+			</div>
+			<div class="form-group row px-5 py-1">
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="word50" placeholder="단어50 입력">
+				</div>
+				<div class="col-md-5">
+					<input type="text" class="form-control form-control-lg" id="mean50" placeholder="뜻50 입력">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>
+</body>
+</html>

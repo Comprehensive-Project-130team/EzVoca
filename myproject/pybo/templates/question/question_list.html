@@ -16,6 +16,52 @@
     </style>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<body>
+
+     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.html">EZVOCA</a>
+         {% if g.user %}
+            <ul class="navbar-nav px-3">
+              <li class="nav-item text-nowrap">
+                  <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+             </li>
+            </ul>
+          {% endif %}
+     </header>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../../dash">
+              <span data-feather="home"></span>
+              홈
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../voca">
+              <span data-feather="file-text"></span>
+              단어장
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../list">
+              <span data-feather="users"></span>
+              모임
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../account">
+              <span data-feather="user"></span>
+              계정관리
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <div class="container my-3">
     <table class="table">
         <thead>
@@ -26,18 +72,8 @@
             <th>작성일시</th>
         </tr>
         </thead>
-        </form>
         <tbody>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA 모임</a>
-         {% if g.user %}
-            <ul class="navbar-nav px-3">
-              <li class="nav-item text-nowrap">
-                  <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
-             </li>
-            </ul>
-          {% endif %}
-     </header>
+
         {% if question_list %}
         {% for question in question_list.items %}
         <tr class="text-center">
@@ -105,4 +141,10 @@
     </ul>
     <!-- 페이징처리 끝 -->
     <a href="{{ url_for('question.create') }}" class="btn btn-primary">글쓰기</a>
-</div>
+      </div>
+      </main>
+    </div>
+    </div>
+</body>
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+      <script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>

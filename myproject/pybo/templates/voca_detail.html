@@ -16,9 +16,9 @@
     </style>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-  <body>
+  <body class="bg-color3">
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ">
 <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.html">EZVOCA</a>
 {% if g.user %}
 <ul class="navbar-nav px-3">
@@ -50,9 +50,7 @@
             <th>뜻</th>
         </tr>
         </thead>
-        </form>
         <tbody class="tbody1">
-     </header>
         {% if question_list %}
         {% for question in question_list %}
         <tr class="tr1">
@@ -77,6 +75,7 @@
         </tbody>
 
        </table>
+
           <a href="시험링크" class="btn btn-primary my-2 btn-outline-dark text-white">시험</a>
           <a href="단어학습링크" class="btn btn-success my-2 btn-space btn-outline-dark text-white">단어학습</a>
         </div>
@@ -86,4 +85,3 @@
     </section>
 </main>
   </body>
-</html>

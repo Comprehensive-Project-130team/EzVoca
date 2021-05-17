@@ -88,3 +88,39 @@ body {
   border-radius: 0;
 }
 
+
+
+/*
+ * voca_detail.html
+ */
+.tr1 {
+width: 100%;
+display: inline-table;
+table-layout: fixed;
+}
+
+.table1{
+ height:400px; 
+}
+.tbody1{
+  overflow-y: scroll;      
+  height: 355px;
+  width: 32%;
+  position: absolute;
+}
+
+.btn-space{
+  margin-right: 5px;
+}
+.bg-color{
+  background-color: #FF7A7A;
+}
+.bg-color2{
+  background-color: white;
+}
+.bg-color3{
+  background: linear-gradient( to left, white, pink ); 
+}
+.bg-color4{
+  background: linear-gradient( to top, white, silver ); 
+}

@@ -39,13 +39,7 @@
                   <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
              </li>
             </ul>
-         {% else %}
-         <ul class="navbar-nav px-3">
-                  <li class="nav-item text-nowrap">
-                <a class="nav-link" href="{{ url_for('main.index') }}">로그인</a>
-            </li>
-         </ul>
-         {% endif %}
+          {% endif %}
      </header>
 <div class="container-fluid">
   <div class="row">
@@ -53,7 +47,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" href="../dash">
               <span data-feather="home"></span>
               홈
             </a>
@@ -65,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('question._list') }}">
+            <a class="nav-link" href="../question/list">
               <span data-feather="users"></span>
               모임
             </a>
@@ -96,4 +90,3 @@
       <script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>
   </body>
 </html>
-
