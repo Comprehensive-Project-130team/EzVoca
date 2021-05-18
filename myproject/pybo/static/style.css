@@ -1,0 +1,85 @@
+/* 폰트 본고딕 */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+/* reset css 모음 */
+html,
+body {
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+form {
+    padding-top: 10px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+input[type="email"],
+input[type="password"] {
+    border: 2px solid #f66;
+    margin-bottom: 25px;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus{
+    border-color: #f99;
+    box-shadow: 0 0 0 0.25rem rgba(255, 153, 153, 0.25);
+}
+
+button {
+    width: 100%;
+}
+
+/* Reset css Bootstrap 기본 설정 오버라이드 !import 모음 */
+a {
+    text-decoration: none !important;
+}
+
+/* class 모음 */
+.global-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f66;
+}
+
+.login-form {
+    width: 380px;
+    height: 450px;
+    margin: 20px;
+}
+
+.card-title {
+    font-weight: 900;
+    padding-top: 20px;
+}
+
+.btn {
+    font-size: 14px;
+    transform: translateY(10px);
+}
+
+.signup {
+    text-align: center;
+    padding-top: 25px;
+}
+
+.find-password-style {
+    float: right;
+}
+
+/* Class Bootstrap 기본 설정 오버라이드 !important 모음 */
+.background-f99 {
+    background-color: #f99 !important;
+}
+
+.btn-background-f66 {
+    background: #f66 !important;
+    border-color: #f66 !important;
+}
+
+.btn-background-f66:focus {
+    border-color: #f99 !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 153, 153, 0.25) !important;
+}
