@@ -1,0 +1,5 @@
+myproject/.idea/
+myproject/__pycache__/
+myproject/migrations/
+myproject/pybo.db
+myproject/pybo/__pycache__/
