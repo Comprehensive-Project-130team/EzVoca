@@ -3,3 +3,4 @@ myproject/__pycache__/
 myproject/migrations/
 myproject/pybo.db
 myproject/pybo/__pycache__/
+myproject/pybo/views/__pycache__/
