@@ -91,26 +91,96 @@ body {
 
 
 /*
- * voca_detail.html
+ * table
  */
-.tr1 {
-width: 100%;
-display: inline-table;
-table-layout: fixed;
-}
+ .table {
+     width: 100%;
+     max-width: 100%;
+     margin-bottom: 1rem;
+     background-color: transparent
+ }
 
-.table1{
- height:400px; 
-}
-.tbody1{
-  overflow-y: scroll;      
-  height: 355px;
-  width: 32%;
-  position: absolute;
-}
+ * {
+     outline: none
+ }
+
+
+
+ .table thead th {
+     vertical-align: bottom;
+     border-bottom: 2px solid #dee2e6
+ }
+
+ .table th {
+     padding: 1rem;
+     vertical-align: top;
+ }
+
+ .table th,
+ .table thead th {
+     font-weight: 500
+ }
+
+ th {
+     text-align: inherit
+ }
+
+ .m-b-20 {
+     margin-bottom: 20px
+ }
+
+ .customcheckbox {
+     display: block;
+     position: relative;
+     padding-left: 24px;
+     font-weight: 100;
+     margin-bottom: 12px;
+     cursor: pointer;
+     font-size: 22px;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none
+ }
+
+ .customcheckbox input {
+     position: absolute;
+     opacity: 0;
+     cursor: pointer
+ }
+
+ .checkmark {
+     position: absolute;
+     top: -3px;
+     left: 0;
+     height: 20px;
+     width: 20px;
+     background-color: #CDCDCD;
+     border-radius: 6px
+ }
+
+ .customcheckbox input:checked~.checkmark {
+     background-color: #2196BB
+ }
+
+ .customcheckbox .checkmark:after {
+     left: 8px;
+     top: 4px;
+     width: 5px;
+     height: 10px;
+     border: solid white;
+     border-width: 0 3px 3px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg)
+ }
 
 .btn-space{
   margin-right: 5px;
+    
+/*
+ * color
+ */
 }
 .bg-color{
   background-color: #FF7A7A;

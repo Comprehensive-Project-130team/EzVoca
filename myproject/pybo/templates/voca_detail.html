@@ -40,41 +40,39 @@
           <button type="button" class="btn btn-danger float-end btn-outline-dark btn-space">단어장 삭제</button>
           <button type="button" class="btn btn-warning float-end btn-outline-dark btn-space">단어장 수정</button>
     <div class="row py-lg-5">
-    <div class = "bg-color">
-      <div class="col-lg-6 col-md-8 mx-auto">
-              <table class="table table-striped bg-white table1">
-        <thead>
-        <tr class="thead-dark tr1">
-            <th>#</th>
-            <th>단어</th>
-            <th>뜻</th>
-        </tr>
-        </thead>
-        <tbody class="tbody1">
-        {% if question_list %}
-        {% for question in question_list %}
-        <tr class="tr1">
-            <td>{{ loop.index }}</td>
-            <td>
-                <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
-                 {% if question.answer_set|length > 0 %}
-                <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
-                {% endif %}
-                <!--<a  href="{{ url_for('auth.register') }}">계정생성</a>
-                <a  href="{{ url_for('auth.index') }}">로그인</a>
-                <a  href="{{ url_for('main.dash') }}">대시보드</a> -->
-            </td>
-            <td>{{ question.create_date|datetime }}</td>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="3">질문이 없습니다.</td>
-        </tr>
-        {% endif %}
-        </tbody>
+    <div class = "bg-color2">
+      <div class="col-lg-12 col-md-12 mx-auto">
 
-       </table>
+          <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> <label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span class="checkmark"></span> </label> </th>
+                                <th scope="col">#</th>
+                                <th scope="col">단어</th>
+                                <th scope="col">뜻</th>
+                            </tr>
+                        </thead>
+                        <tbody class="customtable">
+
+                                       {% if word_list %}
+                    {% for word in word_list %}
+
+        <tr>
+                                            <th> <label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span class="checkmark"></span> </label> </th>
+            <td>             
+                {{ word.word_id}}</td>
+            <td>
+                {{ word.voca_word }}
+            </td>   
+            <td>{{ word.voca_word_mean }}</td>
+        </tr> 
+                    {% endfor %}
+            {% endif %}
+   
+                        </tbody>
+                    </table>
+                 </div>
 
           <a href="시험링크" class="btn btn-primary my-2 btn-outline-dark text-white">시험</a>
           <a href="단어학습링크" class="btn btn-success my-2 btn-space btn-outline-dark text-white">단어학습</a>

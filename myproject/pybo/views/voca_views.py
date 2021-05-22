@@ -98,3 +98,9 @@ def view_voca():
             dic[word_list[i].voca_id] = 1
     return render_template("voca.html", voca_list=voca_list, num=dic)
 
+@bp.route('/detail/<int:voca_id>/')
+def detail(voca_id):
+    word_list = Vocabulary_word.query.filter_by(voca_id=voca_id).all()
+
+
+    return render_template("voca_detail.html", word_list=word_list)

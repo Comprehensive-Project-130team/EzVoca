@@ -66,37 +66,45 @@
     </nav>
     </div>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <table class="table table-striped">
-        <thead>
-        <tr class="thead-dark">
-            <th>단어장</th>
-            <th>단어개수</th>
-            <th>태그</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if voca_list %}
-        {% for voca in voca_list %}
-        <tr>
-            <td>{{ voca.voca_name }}</td>
-            <td>
-                {{num[voca.voca_id]}}
-            </td>
-            <td>{{ voca.voca_tag }}</td>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="3">단어장이 없습니다.</td>
-        </tr>
-        {% endif %}
-        </tbody>
 
-    </table>
 
     <div class="col-md-1">
         <button type="button" class="btn btn-success btn-lg" style="width:150px" onClick="location.href='/voca/create'">단어장 생성</button>
     </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> <label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span class="checkmark"></span> </label> </th>
+                                <th scope="col">단어장</th>
+                                <th scope="col">단어개수</th>
+                                <th scope="col">태그</th>
+                            </tr>
+                        </thead>
+                        <tbody class="customtable">
+
+                                       {% if voca_list %}
+                    {% for voca in voca_list %}
+
+        <tr>
+                                            <th> <label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span class="checkmark"></span> </label> </th>
+            <td>             
+                <a href="{{ url_for('voca.detail', voca_id=voca.voca_id) }}">{{ voca.voca_name}}</a></td>
+            <td>
+                {{num[voca.voca_id] }}
+            </td>   
+            <td>{{ voca.voca_tag }}</td>
+        </tr> 
+                    {% endfor %}
+                                    {% else %}
+        <tr>
+            <td colspan="3">단어장이 없습니다.</td>
+        </tr>
+            {% endif %}
+   
+                        </tbody>
+                    </table>
+                 </div>
     </main>
     </div>
 
