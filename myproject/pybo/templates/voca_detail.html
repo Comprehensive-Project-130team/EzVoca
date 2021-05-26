@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-   <style>
+<style>
       .bd-placeholder-img{
         font-size: 1.125rem;
         text-anchor: middle;
@@ -13,73 +13,82 @@
           font-size: 3.5rem;
         }
       }
-    </style>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-  <body class="bg-color3">
+
+
+
+</style>
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<body class="bg-color3">
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ">
-<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.html">EZVOCA</a>
-{% if g.user %}
-<ul class="navbar-nav px-3">
-	<li class="nav-item text-nowrap">
-	<a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
-	</li>
-</ul>
- {% endif %} </header>
-
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA</a>
+    {% if g.user %}
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+        </li>
+    </ul>
+    {% endif %}
+</header>
 
 
 <main>
     <section class="my-5 p-5 text-center container border bg-color">
-        <div class = "bg-color">
-          <button type="button" class="btn btn-dark float-start btn-space">단어장 이름 :</button>
-          <button type="button" class="btn bg-white btn-outline-dark float-start">단어장 이름 2</button>
-          <button type="button" class="btn btn-dark">카테고리/태그 :</button>
-          <button type="button" class="btn bg-white btn-outline-dark">카테고리/태그</button>
-          <button type="button" class="btn btn-danger float-end btn-outline-dark btn-space">단어장 삭제</button>
-          <button type="button" class="btn btn-warning float-end btn-outline-dark btn-space">단어장 수정</button>
-    <div class="row py-lg-5">
-    <div class = "bg-color2">
-      <div class="col-lg-12 col-md-12 mx-auto">
-
-          <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th> <label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span class="checkmark"></span> </label> </th>
-                                <th scope="col">#</th>
-                                <th scope="col">단어</th>
-                                <th scope="col">뜻</th>
+        <div class="bg-color">
+            <button type="button" class="btn btn-dark float-start btn-space">단어장 이름 :</button>
+            <button type="button" class="btn bg-white btn-outline-dark float-start">{{voca.vocaname}}</button>
+            <button type="button" class="btn btn-dark">카테고리/태그 :</button>
+            <button type="button" class="btn bg-white btn-outline-dark">{{voca.tag}}</button>
+            <a href="/voca/{{voca.id}}/delete" type="button"
+               class="btn btn-danger float-end btn-outline-dark btn-space">단어장 삭제</a>
+            <a href="/voca/{{voca.id}}/edit" type="button" class="btn btn-warning float-end btn-outline-dark btn-space">단어장
+                수정</a>
+            <div class="row py-lg-5">
+                <div class="bg-color">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <table class="table table-striped bg-white table1">
+                            <thead>
+                            <tr class="thead-dark tr1">
+                                <th>#</th>
+                                <th>단어</th>
+                                <th>뜻</th>
                             </tr>
-                        </thead>
-                        <tbody class="customtable">
+                            </thead>
+                            <tbody class="tbody1">
+                            {% if voca_list %}
+                            {% for v in voca_list %}
+                            <tr class="tr1">
+                                <td>{{ loop.index }}</td>
+                                <td>{{ v.word }}</td>
+                                <td>{{ v.mean }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="3">질문이 없습니다.</td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
 
-                                       {% if word_list %}
-                    {% for word in word_list %}
+                        </table>
 
-        <tr>
-                                            <th> <label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span class="checkmark"></span> </label> </th>
-            <td>             
-                {{ word.word_id}}</td>
-            <td>
-                {{ word.voca_word }}
-            </td>   
-            <td>{{ word.voca_word_mean }}</td>
-        </tr> 
-                    {% endfor %}
-            {% endif %}
-   
-                        </tbody>
-                    </table>
-                 </div>
-
-          <a href="시험링크" class="btn btn-primary my-2 btn-outline-dark text-white">시험</a>
-          <a href="단어학습링크" class="btn btn-success my-2 btn-space btn-outline-dark text-white">단어학습</a>
-        </div>
-      </div>
-   </div>
+                        <a href="/word_test/{{voca.id}}" class="btn btn-primary my-2 btn-outline-dark text-white">시험</a>
+                        <a href="/word/{{voca.id}}" class="btn btn-success my-2 btn-space btn-outline-dark text-white">단어학습</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
-  </body>
+
+<script>
+  {% if not voca %}
+        alert('없거나 삭제된 단어장입니다.')
+        location.href = "/dash"
+  {% endif %}
+
+
+
+</script>
+</body>

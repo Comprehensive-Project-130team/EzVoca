@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-   <style>
+<style>
       .bd-placeholder-img{
         font-size: 1.125rem;
         text-anchor: middle;
@@ -15,105 +15,102 @@
           font-size: 3.5rem;
         }
       }
-    </style>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</style>
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 <body>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA</a>
-         {% if g.user %}
-            <ul class="navbar-nav px-3">
-              <li class="nav-item text-nowrap">
-                  <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
-             </li>
-            </ul>
-          {% endif %}
-     </header>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('main.dash') }}">EZVOCA</a>
+    {% if g.user %}
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}"> {{ g.user.username }} (로그아웃) </a>
+        </li>
+    </ul>
+    {% endif %}
+</header>
 
 <!-- Sidebar -->
 
 <div class="container-fluid mr-5">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-fixed pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="/dash">
-              <span data-feather="home"></span>
-              홈
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/voca">
-              <span data-feather="file-text"></span>
-              단어장
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/question/list">
-              <span data-feather="users"></span>
-              모임
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/account">
-              <span data-feather="user"></span>
-              계정관리
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-fixed pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../dash">
+                            <span data-feather="home"></span>
+                            홈
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../voca">
+                            <span data-feather="file-text"></span>
+                            단어장
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../question/list">
+                            <span data-feather="users"></span>
+                            모임
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../account">
+                            <span data-feather="user"></span>
+                            계정관리
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="mt-3 d-flex flex-row-reverse">
+            <div class="p-1">
 
+                <a href="/vocacreate" class=" btn btn-success btn-space btn-outline-dark text-white">단어장 생성</a>
 
-    <div class="col-md-1">
-        <button type="button" class="btn btn-success btn-lg" style="width:150px" onClick="location.href='/voca/create'">단어장 생성</button>
-    </div>
-                  <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th> <label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span class="checkmark"></span> </label> </th>
-                                <th scope="col">단어장</th>
-                                <th scope="col">단어개수</th>
-                                <th scope="col">태그</th>
-                            </tr>
-                        </thead>
-                        <tbody class="customtable">
-
-                                       {% if voca_list %}
-                    {% for voca in voca_list %}
-
-        <tr>
-                                            <th> <label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span class="checkmark"></span> </label> </th>
-            <td>             
-                <a href="{{ url_for('voca.detail', voca_id=voca.voca_id) }}">{{ voca.voca_name}}</a></td>
-            <td>
-                {{num[voca.voca_id] }}
-            </td>   
-            <td>{{ voca.voca_tag }}</td>
-        </tr> 
-                    {% endfor %}
-                                    {% else %}
-        <tr>
-            <td colspan="3">단어장이 없습니다.</td>
-        </tr>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr class="thead-dark">
+                <th>단어장</th>
+                <th>단어개수</th>
+                <th>태그</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if voca_list %}
+            {% for voca in voca_list %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
+                <td>
+                    {% if voca_map[voca] %}
+                    <span class="text-danger small ml-2">{{ voca_map[voca]|length }}</span>
+                    {% endif %}
+                </td>
+                <td>{{voca.tag}}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
             {% endif %}
-   
-                        </tbody>
-                    </table>
-                 </div>
+            </tbody>
+
+        </table>
     </main>
-    </div>
+</div>
 
 
-
-
-
-
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-      <script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='css/dashboard.js') }}"></script>
 </body>
 </html>

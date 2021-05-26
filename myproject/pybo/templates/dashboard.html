@@ -77,14 +77,17 @@
                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">현재 학습중인 단어장</h1>
                </div>
-               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+               <div class="pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">내가 만든 단어장</h1>
+                   <div>
+                   <ul>
+                        {% for voca in voca_list %}
+                            <li class="m-2"><a class="text-dark h6" href="/voca_detail/{{voca.id}}" style="text-decoration:none"> {{voca.vocaname}} </a></li>
+                        {% endfor %}
+                   </ul>
+                       </div>
+
                </div>
-                 {% if voca_list %}
-                   {% for voca in voca_list %}
-                     <h4>{{voca.voca_name}}</h4>
-                   {% endfor %}
-                   {% endif %}
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">참여중인 모임</h1>
       </div>

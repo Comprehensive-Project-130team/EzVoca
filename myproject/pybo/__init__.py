@@ -3,10 +3,11 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 import config
+
 db = SQLAlchemy()
 migrate = Migrate()
 
-app.secret_key = b'dhdjd$ah#q89hwu&.ihr'#세션 비밀번호
+app.secret_key = b'dhdjd$ah#q89hwu&.ihr'
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -17,6 +18,7 @@ naming_convention = {
 }
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 migrate = Migrate()
+
 
 def create_app():
     app = Flask(__name__)
@@ -34,19 +36,16 @@ def create_app():
     else:
         migrate.init_app(app, db)
 
-
     from . import models
 
-    # 블루프린트
-    from .views import main_views, auth_views, question_views, answer_views, voca_views
+    from .views import main_views, auth_views, question_views, answer_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(auth_views.bp)
     app.register_blueprint(question_views.bp)
     app.register_blueprint(answer_views.bp)
-    app.register_blueprint(voca_views.bp)
 
     from .filter import format_datetime
     app.jinja_env.filters['datetime'] = format_datetime
+    app.jinja_env.filters['len'] = len
 
     return app
-
