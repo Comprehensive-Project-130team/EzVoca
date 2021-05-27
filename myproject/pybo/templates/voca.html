@@ -16,6 +16,10 @@
         }
       }
 
+
+
+
+
 </style>
 <!-- CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
@@ -39,25 +43,25 @@
             <div class="position-fixed pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="../dash">
+                        <a class="nav-link" href="/dash">
                             <span data-feather="home"></span>
                             홈
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../voca">
+                        <a class="nav-link active" aria-current="page" href="/voca">
                             <span data-feather="file-text"></span>
                             단어장
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../question/list">
+                        <a class="nav-link" href="/question/list">
                             <span data-feather="users"></span>
                             모임
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../account">
+                        <a class="nav-link" href="/account">
                             <span data-feather="user"></span>
                             계정관리
                         </a>
@@ -67,43 +71,48 @@
         </nav>
     </div>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="mt-3 d-flex flex-row-reverse">
-            <div class="p-1">
-
-                <a href="/vocacreate" class=" btn btn-success btn-space btn-outline-dark text-white">단어장 생성</a>
-
-            </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-success btn-lg" style="width:150px"
+                    onClick="location.href='/voca/create'">단어장 생성
+            </button>
         </div>
-        <table class="table table-striped">
-            <thead>
-            <tr class="thead-dark">
-                <th>단어장</th>
-                <th>단어개수</th>
-                <th>태그</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if voca_list %}
-            {% for voca in voca_list %}
-            <tr>
-                <td>
-                    <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
-                <td>
-                    {% if voca_map[voca] %}
-                    <span class="text-danger small ml-2">{{ voca_map[voca]|length }}</span>
-                    {% endif %}
-                </td>
-                <td>{{voca.tag}}</td>
-            </tr>
-            {% endfor %}
-            {% else %}
-            <tr>
-                <td colspan="3">질문이 없습니다.</td>
-            </tr>
-            {% endif %}
-            </tbody>
 
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th><label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span
+                            class="checkmark"></span> </label></th>
+                    <th scope="col">단어장</th>
+                    <th scope="col">단어개수</th>
+                    <th scope="col">태그</th>
+                </tr>
+                </thead>
+                <tbody class="customtable">
+                {% if voca_list %}
+                {% for voca in voca_list %}
+                <tr>
+                    <th><label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span
+                            class="checkmark"></span> </label></th>
+                    <td>
+                        <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
+                    <td>
+                        {% if voca_map[voca] %}
+                        <span class="text-danger small ml-2">{{ voca_map[voca]|length }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{voca.tag}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="3">질문이 없습니다.</td>
+                </tr>
+                {% endif %}
+                </tbody>
+
+            </table>
+        </div>
     </main>
 </div>
 
