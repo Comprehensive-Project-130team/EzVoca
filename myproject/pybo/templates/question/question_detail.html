@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>EZVOCA - 커뮤니티</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/dash">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">홈</span>
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">홈</span>
             </a>
 					</li>
 
@@ -216,7 +216,7 @@
               </a>
                             {% if g.user %}
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
+                <img src="/static/images/guest.png" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -301,6 +301,7 @@
                     name="content" id="content" class="form-control" rows="10"></textarea>
         </div>
         <input type="submit" value="등록" class="btn btn-primary">
+        <a href="/question/list" class="btn btn-success">글 목록</a>
     </form>
 {% endblock %}
 
@@ -312,33 +313,6 @@
 				</div>
 			</main>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit Demo</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
 		</div>
 	</div>
 

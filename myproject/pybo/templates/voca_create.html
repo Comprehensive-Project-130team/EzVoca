@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>EZVOCA - 단어장 생성</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/dash">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">홈</span>
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">홈</span>
             </a>
 					</li>
 
@@ -216,7 +216,7 @@
               </a>
                             {% if g.user %}
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
+                <img src="/static/images/guest.png" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -247,9 +247,20 @@
 							<div class="card">
 								<div class="card-body"><form method="post">
             <div class="form-group row px-5 py-1">
-                <div class="col-md-11">
+                <div class="col-md-6">
                     <input type="vocaname" name="title" class="form-control form-control-lg" id="title"
                            placeholder="단어장 제목 입력" value="{{voca.vocaname if voca}}">
+                </div>
+                <div class="col-md-5">
+                    <select type="text" name="tag" class="form-select form-control-lg" id="tag" value="{{voca.tag if voca}}">
+                        <option value="null">태그 선택</option>
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="생활">생활</option>
+                        <option value="경제">경제</option>
+                        <option value="게임">게임</option>
+                        <option value="기타">기타</option>
+                    </select>
                 </div>
                 <div class="col-md-1">
                     <!-- 단어 생성 버튼-->
@@ -259,13 +270,9 @@
                     <button type="submit" class="btn btn-success btn-lg col-md-12">수정</button>
                     {% endif %}
                 </div>
+
             </div>
-            <div class="form-group row px-5 py-1">
-                <div class="col-md-12">
-                    <input type="text" name="tag" class="form-control form-control-lg" id="tag" placeholder="단어장 태그 입력"
-                           value="{{voca.tag if voca}}">
-                </div>
-            </div>
+
             {% for i in range(1, 51) %}
             <div class="form-group row px-5 py-1">
                 <div class="col-md-6">

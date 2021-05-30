@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>EZVOCA - 프로필</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/dash">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">홈</span>
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">홈</span>
             </a>
 					</li>
 
@@ -216,7 +216,7 @@
               </a>
                             {% if g.user %}
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
+                <img src="/static/images/guest.png" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -273,7 +273,7 @@
 								<hr class="my-0" />
 								<div class="card-body">
 									<ul class="list-unstyled mb-0">
-										<a class="btn btn-primary btn-lg offset-md-3 col-md-6" href="#"><i data-feather="lock"></i> 비밀번호 변경</a>
+										<a class="btn btn-primary btn-lg offset-md-3 col-md-6" href="{{ url_for('auth.changepw') }}"><i data-feather="lock"></i> 비밀번호 변경</a>
                                         <a class="btn btn-danger btn-lg offset-md-3 col-md-6 mt-1" href="#" ><i data-feather="user-x" style="text"></i> 회원 탈퇴</a>    
 									</ul>
 								</div>

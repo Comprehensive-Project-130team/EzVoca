@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>EZVOCA - 홈</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/dash">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">홈</span>
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">홈</span>
             </a>
 					</li>
 
@@ -216,7 +216,7 @@
               </a>
                             {% if g.user %}
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
+                <img src="/static/images/guest.png" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -247,23 +247,26 @@
 							<div class="w-100">
 								<div class="row">
 									<div class="col-sm-6">
-										<div class="card">
+										<div class="card" >
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
+                                                        <h5 class="card-title" >단어장</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
+															<i class="align-middle" data-feather="book"></i>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
+												<h1 class="mt-1 mb-3">{% if voca_list_all %}
+                        <span>{{ voca_list_all|length }}개</span>
+                                                    {% else %}<span>0개</span>
+                                                    
+                        {% endif %}                        </h1>
 												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/voca_all">전체 단어장으로 이동 →</a> </span>
 												</div>
 											</div>
 										</div>
@@ -271,19 +274,22 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
+														<h5 class="card-title">유저</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
+															<i class="align-middle" data-feather="user"></i>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
+												<h1 class="mt-1 mb-3">{% if user_list %}
+                        <span>{{ user_list|length }}명</span>
+                                                    {% else %}<span>0명</span>
+                                                    
+                        {% endif %}  </h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/account"> 프로필로 이동 →</a> </span>
 												</div>
 											</div>
 										</div>
@@ -293,19 +299,23 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Earnings</h5>
+														<h5 class="card-title">{{ g.user.username }}님의 단어장</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="dollar-sign"></i>
+															<i class="align-middle" data-feather="book"></i>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
+												<h1 class="mt-1 mb-3">{% if voca_list %}
+                        <span>{{ voca_list|length }}개</span>
+                                                    {% else %}<span>0개</span>
+                                                    
+                        {% endif %}</h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/voca"> 내 단어장으로 이동 →</a>  </span>
+
 												</div>
 											</div>
 										</div>
@@ -313,19 +323,18 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Orders</h5>
+                                                        <h5 class="card-title">커뮤니티 글</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="shopping-cart"></i>
+															<i class="align-middle" data-feather="users"></i>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3">{{ question_list2|len }}개</h1>
 												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-													<span class="text-muted">Since last week</span>
+                                                    <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/question/list">커뮤니티로 이동 →</a></span>
 												</div>
 											</div>
 										</div>
@@ -335,16 +344,46 @@
 						</div>
 
 						<div class="col-xl-6 col-xxl-7">
-							<div class="card flex-fill w-100">
+														<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Recent Movement</h5>
+									<h5 class="card-title mb-0">최신 글</h5>
 								</div>
-								<div class="card-body py-3">
-									<div class="chart chart-sm">
-										<canvas id="chartjs-dashboard-line"></canvas>
-									</div>
-								</div>
+								<table class="table table-hover my-0">
+                                <thead>
+                                <tr class="text-center thead-dark">
+                                    <th>번호</th>
+                                    <th style="width:50%">제목</th>
+                                    <th>글쓴이</th>
+                                    <th>작성일시</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% if question_list %}
+                                {% for question in question_list.items %}
+                                <tr class="text-center">
+                                    <td>{{ loop.index }}</td>
+                                    <td class="text-left">
+                                        <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+                                         {% if question.answer_set|length > 0 %}
+                                        <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
+                                        {% endif %}
+                                        <!--<a  href="{{ url_for('auth.register') }}">계정생성</a>
+                                        <a  href="{{ url_for('auth.index') }}">로그인</a>
+                                        <a  href="{{ url_for('main.dash') }}">대시보드</a> -->
+                                    </td>
+                                    <td>{{ question.user.username }}</td>  <!-- 글쓴이 추가 -->
+                                    <td>{{ question.create_date|datetime }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td colspan="4">글이 없습니다.</td>
+                                </tr>
+                                {% endif %}
+                                </tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -399,7 +438,7 @@
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Calendar</h5>
+									<h5 class="card-title mb-0">캘린더</h5>
 								</div>
 								<div class="card-body d-flex">
 									<div class="align-self-center w-100">

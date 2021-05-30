@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>EZVOCA - 시험결과</title>
+	<title>EZVOCA - 전체 단어장</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 
 <body>
 	<div class="wrapper">
-						<nav id="sidebar" class="sidebar js-sidebar" >
+				<nav id="sidebar" class="sidebar js-sidebar" >
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="/dash">
           <span class="align-middle">EZVOCA</span>
@@ -236,43 +236,62 @@
 					</ul>
 				</div>
 			</nav>
-
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>단어 시험 결과</strong></h1>
+					<h1 class="h3 mb-3"><strong>전체 단어장</strong></h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-body">
-        <div class="row py-lg-5">
-            <div class="card col-lg-4 my-3 mx-5 text-center" style="height: 75px; background-color: silver;">
-                <div class="row no-gutters">
-                    <div class="col-md-12">
-                        <div class="card-body ">
-                            <h1 class="card-text">{{voca_set.vocaname}}</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-lg-11 my-3 mx-5" style="height: 500px; background-color: #EEEEEE;">
-                <div class="row no-gutters">
-                    <div class="col-md-12">
-                        <div class="card-body">
-                            <h1 class="card-text py-3">단어 총 개수 : {{total}}개</h1>
-                            <h1 class="card-text py-3">맞춘 단어 개수 : {{correct}}개</h1>
-                            <h1 class="card-text py-3">틀린 단어 개수 : {{total-correct}}개</h1>
-                            <h1 class="card-text py-3">총점 : {{correct}}/{{total}}</h1>
-                            <h1 class="card-text py-3">점수 : {{100*correct//total | int}}</h1>
-                            <a href="/voca" class="btn btn-success text-white"
-                               style="float: right">종료</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+								<div class="card-body">
+            <button type="button" class="btn btn-primary btn-lg" style="width:150px"
+                    onClick="location.href='/voca'">내 단어장
+            </button>
+            <button type="button" class="btn btn-success btn-lg" style="width:150px"
+                    onClick="location.href='/vocacreate'">단어장 생성
+            </button>            
+            
+
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:30%;">단어장</th>
+                    <th scope="col">단어개수</th>
+                    <th scope="col">태그</th>
+                    <th scope="col">만든이</th>
+                    <th scope="col">삭제</th>
+
+                </tr>
+                </thead>
+                <tbody class="customtable">
+                {% if voca_list %}
+                {% for voca in voca_list %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
+                    <td>
+                        {% if voca_map[voca] %}
+                        <span class="text-danger small ml-2">{{ voca_map[voca]|length }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{voca.tag}}</td>
+                    <td>{{voca.user.username}}</td>
+                    <td>{% if voca.user==g.user %}<a href="/voca/{{voca.id}}/delete" type="button"
+               class="btn btn-danger text-right" >단어장 삭제</a>{% endif %}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="5">단어장이 없습니다.</td>
+                </tr>
+                {% endif %}
+                </tbody>
+
+            </table>
+        </div>
 								</div>
 							</div>
 						</div>
@@ -286,6 +305,15 @@
 	</div>
 
 	<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $( document ).ready( function() {
+        $( '.check-all' ).click( function() {
+          $( '.chk' ).prop( 'checked', this.checked );
+        } );
+      } );
+    </script>
 
 
 

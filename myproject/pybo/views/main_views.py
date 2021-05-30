@@ -1,7 +1,7 @@
 from flask import Blueprint, url_for, render_template, flash, request, session, g
 import random
 from pybo import db
-from pybo.models import User, Voca, VocaWord
+from pybo.models import User, Voca, VocaWord, Question, Answer
 from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -20,7 +20,14 @@ def index():
 @bp.route('/dash/')
 def dash():
     voca_list = Voca.query.filter_by(user=g.user).all()
-    return render_template("dashboard.html",voca_list=voca_list)
+    voca_list_all = Voca.query.all()
+    user_list = User.query.all()
+    page = request.args.get('page', type=int, default=1)  # 페이지 
+    question_list = Question.query.order_by(Question.create_date.desc())#조회결과를 작성일시 기준으로 역순으로 정렬
+    question_list = question_list.paginate(page, per_page=5)
+    question_list2 = Question.query.all()
+
+    return render_template("dashboard.html",voca_list=voca_list, voca_list_all=voca_list_all, user_list=user_list, question_list=question_list, question_list2=question_list2)
 
 @bp.route('/voca/')
 def voca():
@@ -29,6 +36,15 @@ def voca():
     for voca in voca_list:
         voca_map[voca] = VocaWord.query.filter_by(voca=voca).all()
     return render_template("voca.html", voca_list=voca_list, voca_map=voca_map)
+
+@bp.route('/voca_all/')
+def voca_all():
+    voca_list = Voca.query.all()
+    voca_map = {}
+    for voca in voca_list:
+        voca_map[voca] = VocaWord.query.filter_by(voca=voca).all()
+    return render_template("voca_all.html", voca_list=voca_list, voca_map=voca_map)
+
 
 @bp.route('/voca_detail/<vocaid>')
 def voca_detail(vocaid):
@@ -40,15 +56,6 @@ def voca_detail(vocaid):
 def account():
     return render_template("account.html")
 
-@bp.route('/vocacreate/test', methods=["POST","GET"])
-def create_test():
-    out = "<h1>VocaSets</h1>\n<pre>"
-    for vs in Voca.query.filter_by(user=g.user).all():
-        out += f"\n{vs.vocaname}, id={vs.id}, tag={vs.tag}, user={vs.user_id}"
-        for v in VocaWord.query.filter_by(voca=vs).all():
-            out += f"\n  -  {v.word} : {v.mean}"
-    out += "<hr/>"
-    return out
 
 @bp.route('/voca/<vocaid>/edit', methods=["POST", "GET"])
 def voca_edit(vocaid):

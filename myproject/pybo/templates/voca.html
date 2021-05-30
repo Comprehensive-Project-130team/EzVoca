@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title>EZVOCA - 내 단어장</title>
 
 	<link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/dash">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">홈</span>
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">홈</span>
             </a>
 					</li>
 
@@ -216,7 +216,7 @@
               </a>
                             {% if g.user %}
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
+                <img src="/static/images/guest.png" class="avatar img-fluid rounded me-1"/> <span class="text-dark">{{ g.user.username }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -239,36 +239,34 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>단어장 목록</strong></h1>
+					<h1 class="h3 mb-3"><strong>내 단어장</strong></h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 
 								<div class="card-body">
-        <div class="col-md-1">
+            <button type="button" class="btn btn-primary btn-lg" style="width:150px"
+                    onClick="location.href='/voca_all'">전체 단어장
+            </button>   
             <button type="button" class="btn btn-success btn-lg" style="width:150px"
                     onClick="location.href='/vocacreate'">단어장 생성
             </button>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table">
+                    <div class="table-responsive">
+            <table class="table text-center">
                 <thead class="thead-light">
                 <tr>
-                    <th><label class="customcheckbox m-b-20"> <input type="checkbox" id="mainCheckbox"> <span
-                            class="checkmark"></span> </label></th>
-                    <th scope="col">단어장</th>
+                    <th scope="col" style="width:30%;">단어장</th>
                     <th scope="col">단어개수</th>
                     <th scope="col">태그</th>
+                    <th scope="col">만든이</th>
+                    <th scope="col">삭제</th>
                 </tr>
                 </thead>
                 <tbody class="customtable">
                 {% if voca_list %}
                 {% for voca in voca_list %}
                 <tr>
-                    <th><label class="customcheckbox"> <input type="checkbox" class="listCheckbox"> <span
-                            class="checkmark"></span> </label></th>
                     <td>
                         <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
                     <td>
@@ -277,11 +275,15 @@
                         {% endif %}
                     </td>
                     <td>{{voca.tag}}</td>
+                    <td>{{voca.user.username}}</td>
+                    <td>            <a href="/voca/{{voca.id}}/delete" type="button"
+               class="btn btn-danger text-right" >단어장 삭제</a></td>
+
                 </tr>
                 {% endfor %}
                 {% else %}
                 <tr>
-                    <td colspan="3">단어장이 없습니다.</td>
+                    <td colspan="5">단어장이 없습니다.</td>
                 </tr>
                 {% endif %}
                 </tbody>
@@ -301,7 +303,14 @@
 	</div>
 
 	<script src="{{ url_for('static', filename='app.js') }}"></script>
-
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $( document ).ready( function() {
+        $( '.check-all' ).click( function() {
+          $( '.chk' ).prop( 'checked', this.checked );
+        } );
+      } );
+    </script>
 
 
 </body>
