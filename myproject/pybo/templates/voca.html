@@ -35,7 +35,7 @@
 					</li>
 
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="/voca">
+						<a class="sidebar-link" href="/voca_all">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">단어장</span>
             </a>
 					</li>
@@ -45,13 +45,12 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">커뮤니티</span>
             </a>
 					</li>                    
-                    
+{% if g.user %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/account">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">프로필</span>
             </a>
 					</li>
-{% if g.user %}
 {% else %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/auth/index">
@@ -252,44 +251,39 @@
             <button type="button" class="btn btn-success btn-lg" style="width:150px"
                     onClick="location.href='/vocacreate'">단어장 생성
             </button>
-                    <div class="table-responsive">
-            <table class="table text-center">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col" style="width:30%;">단어장</th>
-                    <th scope="col">단어개수</th>
-                    <th scope="col">태그</th>
-                    <th scope="col">만든이</th>
-                    <th scope="col">삭제</th>
-                </tr>
-                </thead>
-                <tbody class="customtable">
-                {% if voca_list %}
-                {% for voca in voca_list %}
-                <tr>
-                    <td>
-                        <a href="{{ url_for('main.voca_detail', vocaid=voca.id) }}">{{ voca.vocaname }}</a></td>
-                    <td>
-                        {% if voca_map[voca] %}
-                        <span class="text-danger small ml-2">{{ voca_map[voca]|length }}</span>
-                        {% endif %}
-                    </td>
-                    <td>{{voca.tag}}</td>
-                    <td>{{voca.user.username}}</td>
-                    <td>            <a href="/voca/{{voca.id}}/delete" type="button"
-               class="btn btn-danger text-right" >단어장 삭제</a></td>
-
-                </tr>
-                {% endfor %}
-                {% else %}
-                <tr>
-                    <td colspan="5">단어장이 없습니다.</td>
-                </tr>
-                {% endif %}
-                </tbody>
-
-            </table>
-        </div>
+                            <table class="text-center table table-hover my-3">
+                                <thead class="table-light">
+                                <tr>
+                                    <th scope="col" style="width:30%;">단어장</th>
+                                    <th scope="col">단어개수</th>
+                                    <th scope="col">태그</th>
+                                    <th scope="col">만든이</th>
+                                    <th scope="col">삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if voca_list %}
+                                {% for voca in voca_list %}
+                                    <tr onClick="location.href='{{ url_for('main.voca_detail', vocaid=voca.id) }}'" style="cursor:pointer;">
+                                    <td>
+                                        <a>{{ voca.vocaname }}</a></td>
+                                    <td>
+                                        {% if voca_map[voca] %}
+                                        <span class="text-danger ml-2">{{ voca_map[voca]|length }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{voca.tag}}</td>
+                                    <td>{{voca.user.username}}</td>
+                                    <td>{% if voca.user==g.user %}<a href="/voca/{{voca.id}}/delete" type="button"class="btn btn-danger text-right" >단어장 삭제</a>{% endif %}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td colspan="5">단어장이 없습니다.</td>
+                                </tr>
+                                {% endif %}
+                                </tbody>
+								</table>
 								</div>
 							</div>
 						</div>

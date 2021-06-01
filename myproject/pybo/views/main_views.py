@@ -15,7 +15,7 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return redirect(url_for('auth.index'))
+    return redirect(url_for('main.dash'))
 
 @bp.route('/dash/')
 def dash():

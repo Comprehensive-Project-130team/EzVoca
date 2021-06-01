@@ -35,7 +35,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/voca">
+						<a class="sidebar-link" href="/voca_all">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">단어장</span>
             </a>
 					</li>
@@ -45,13 +45,12 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">커뮤니티</span>
             </a>
 					</li>                    
-                    
+{% if g.user %}
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/account">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">프로필</span>
             </a>
 					</li>
-{% if g.user %}
 {% else %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/auth/index">

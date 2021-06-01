@@ -35,7 +35,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/voca">
+						<a class="sidebar-link" href="/voca_all">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">단어장</span>
             </a>
 					</li>
@@ -45,13 +45,12 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">커뮤니티</span>
             </a>
 					</li>                    
-                    
+{% if g.user %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/account">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">프로필</span>
             </a>
 					</li>
-{% if g.user %}
 {% else %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/auth/index">
@@ -247,43 +246,43 @@
 							<div class="card">
 
 								<div class="card-body">
-                                    <div class="container my-3">
-    <table class="table">
-        <thead>
-        <tr class="text-center thead-dark">
-            <th>번호</th>
-            <th style="width:50%">제목</th>
-            <th>글쓴이</th>
-            <th>작성일시</th>
-        </tr>
-        </thead>
-        <tbody>
 
-        {% if question_list %}
-        {% for question in question_list.items %}
-        <tr class="text-center">
-            <td>{{ loop.index }}</td>
-            <td class="text-left">
-                <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
-                 {% if question.answer_set|length > 0 %}
-                <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
-                {% endif %}
-                <!--<a  href="{{ url_for('auth.register') }}">계정생성</a>
-                <a  href="{{ url_for('auth.index') }}">로그인</a>
-                <a  href="{{ url_for('main.dash') }}">대시보드</a> -->
-            </td>
-            <td>{{ question.user.username }}</td>  <!-- 글쓴이 추가 -->
-            <td>{{ question.create_date|datetime }}</td>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="4">글이 없습니다.</td>
-        </tr>
-        {% endif %}
-        </tbody>
+								<table class="table table-hover my-3">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>번호</th>
+                                    <th style="width:35%">제목</th>
+                                    <th>글쓴이</th>
+                                    <th>작성일시</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-    </table>
+                                {% if question_list %}
+                                {% for question in question_list.items %}
+                                <tr class="text-center" onClick="location.href='{{ url_for('question.detail', question_id=question.id) }}'" style="cursor:pointer;">
+                                    <td>{{ loop.index }}</td>
+                                    <td class="text-left">
+                                        <a>{{ question.subject }}</a>
+                                         {% if question.answer_set|length > 0 %}
+                                        <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
+                                        {% endif %}
+                                        <!--<a  href="{{ url_for('auth.register') }}">계정생성</a>
+                                        <a  href="{{ url_for('auth.index') }}">로그인</a>
+                                        <a  href="{{ url_for('main.dash') }}">대시보드</a> -->
+                                    </td>
+                                    <td>{{ question.user.username }}</td>  <!-- 글쓴이 추가 -->
+                                    <td>{{ question.create_date|datetime }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td colspan="4">글이 없습니다.</td>
+                                </tr>
+                                {% endif %}
+                                </tbody>
+								</table>
+                                    
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
@@ -326,7 +325,6 @@
     </ul>
     <!-- 페이징처리 끝 -->
     <a href="{{ url_for('question.create') }}" class="btn btn-primary">글쓰기</a>
-      </div>
 
 								</div>
 							</div>

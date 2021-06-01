@@ -35,7 +35,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/voca">
+						<a class="sidebar-link" href="/voca_all">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">단어장</span>
             </a>
 					</li>
@@ -45,13 +45,13 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">커뮤니티</span>
             </a>
 					</li>                    
-                    
+{% if g.user %}                    
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/account">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">프로필</span>
             </a>
 					</li>
-{% if g.user %}
+
 {% else %}
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/auth/index">
@@ -225,7 +225,7 @@
 								<a class="dropdown-item" href="pages-settings.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
 								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a>
+								<a class="dropdown-item" href="{{ url_for('auth.logout') }}">로그아웃</a>
 							</div>
                             {% else %}
 							<a class="nav-link btn btn-success d-none d-sm-inline-block" href="{{ url_for('auth.index') }}">
@@ -289,7 +289,7 @@
                                                     
                         {% endif %}  </h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/account"> 프로필로 이동 →</a> </span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>{% if g.user %}<a href="/account"> 프로필로 이동 →</a>{% else %}<a href="{{ url_for('auth.index')}}"> 로그인 </a>{% endif %} </span>
 												</div>
 											</div>
 										</div>
@@ -314,7 +314,7 @@
                                                     
                         {% endif %}</h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i><a href="/voca"> 내 단어장으로 이동 →</a>  </span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>{% if g.user %}<a href="/voca"> 내 단어장으로 이동 →</a>{% else %}<a href="{{ url_for('auth.index') }}"> 로그인 </a>{% endif %}  </span>
 
 												</div>
 											</div>
@@ -351,7 +351,7 @@
 								</div>
 								<table class="table table-hover my-0">
                                 <thead>
-                                <tr class="text-center thead-dark">
+                                <tr class="text-center">
                                     <th>번호</th>
                                     <th style="width:50%">제목</th>
                                     <th>글쓴이</th>
@@ -362,10 +362,10 @@
 
                                 {% if question_list %}
                                 {% for question in question_list.items %}
-                                <tr class="text-center">
+                                <tr class="text-center" onClick="location.href='{{ url_for('question.detail', question_id=question.id) }}'" style="cursor:pointer;">
                                     <td>{{ loop.index }}</td>
                                     <td class="text-left">
-                                        <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+                                        <a>{{ question.subject }}</a>
                                          {% if question.answer_set|length > 0 %}
                                         <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
                                         {% endif %}
@@ -393,7 +393,7 @@
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Browser Usage</h5>
+									<h5 class="card-title mb-0">단어장 통계</h5>
 								</div>
 								<div class="card-body d-flex">
 									<div class="align-self-center w-100">
