@@ -26,8 +26,15 @@ def dash():
     question_list = Question.query.order_by(Question.create_date.desc())#조회결과를 작성일시 기준으로 역순으로 정렬
     question_list = question_list.paginate(page, per_page=5)
     question_list2 = Question.query.all()
+    taglang = Voca.query.filter_by(tag="언어").all()
+    tagsport = Voca.query.filter_by(tag="스포츠").all()
+    taglife = Voca.query.filter_by(tag="생활").all()
+    tageco = Voca.query.filter_by(tag="경제").all()
+    taggame = Voca.query.filter_by(tag="게임").all()
+    tagetc = Voca.query.filter_by(tag="기타").all()
+    
 
-    return render_template("dashboard.html",voca_list=voca_list, voca_list_all=voca_list_all, user_list=user_list, question_list=question_list, question_list2=question_list2)
+    return render_template("dashboard.html",voca_list=voca_list, voca_list_all=voca_list_all, user_list=user_list, question_list=question_list, question_list2=question_list2, taglang=taglang, tagsport=tagsport,taglife=taglife, tageco=tageco, taggame=taggame, tagetc=tagetc)
 
 @bp.route('/voca/')
 def voca():

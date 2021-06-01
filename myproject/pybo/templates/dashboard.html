@@ -406,18 +406,30 @@
 										<table class="table mb-0">
 											<tbody>
 												<tr>
-													<td>Chrome</td>
-													<td class="text-end">4306</td>
+													<td>언어</td>
+													<td class="text-end">{{ taglang|length }}</td>
 												</tr>
 												<tr>
-													<td>Firefox</td>
-													<td class="text-end">3801</td>
+													<td>스포츠</td>
+													<td class="text-end">{{ tagsport|length }}</td>
 												</tr>
 												<tr>
-													<td>IE</td>
-													<td class="text-end">1689</td>
+													<td>생활</td>
+													<td class="text-end">{{ taglife|length }}</td>
 												</tr>
-											</tbody>
+												<tr>
+													<td>경제</td>
+													<td class="text-end">{{ tageco|length }}</td>
+												</tr>
+												<tr>
+													<td>게임</td>
+													<td class="text-end">{{ taggame|length }}</td>
+												</tr>
+												<tr>
+													<td>기타</td>
+													<td class="text-end">{{ tagetc|length }}</td>
+												</tr>
+                                            </tbody>
 										</table>
 									</div>
 								</div>
@@ -629,13 +641,16 @@
 			new Chart(document.getElementById("chartjs-dashboard-pie"), {
 				type: "pie",
 				data: {
-					labels: ["Chrome", "Firefox", "IE"],
+					labels: ["언어", "스포츠", "생활", "경제","게임","기타"],
 					datasets: [{
-						data: [4306, 3801, 1689],
+						data: [{{ taglang|length }}, {{ tagsport|length }},{{ taglife|length }},{{ tageco|length }}, {{ taggame|length }},{{ tagetc|length }}],
 						backgroundColor: [
-							window.theme.primary,
-							window.theme.warning,
-							window.theme.danger
+								"rgb(255,0,0)",
+								"rgb(255,165,0)",
+								"rgb(255,255,0)",
+								"rgb(0,255,0)",
+								"rgb(0,0,255)",
+								"rgb(128,128,128)",
 						],
 						borderWidth: 5
 					}]
