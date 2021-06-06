@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!--부트스트랩-->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <title>EzVoca 로그인</title>
+    <title>EZVOCA - 로그인</title>
 </head>
 <!--Custom-->
 <body class="background-f99">
@@ -33,10 +33,7 @@
 
                         <div class="form-group">
                             <label for="password">패스워드</label>
-                            <!--비밀번호 찾기으로 이동하는 곳 href 수정 필요-->
-                            <a href="#" class="find-password-style">
-                                비밀번호 찾기
-                            </a>
+
                             <!--패스워드 입력 id: InputPassword1-->
                             <input type="password" class="form-control form-control-sm" name="password" id="password"
                                    value="{{ form.password.data or '' }}">
