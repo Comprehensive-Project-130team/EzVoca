@@ -252,6 +252,51 @@
                 </div>
                 <div class="col-md-5">
                     <select type="text" name="tag" class="form-select form-control-lg" id="tag" value="{{voca.tag if voca}}">
+                    {% if voca %}
+                    {% if voca.tag == "언어" %}
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="생활">생활</option>
+                        <option value="경제">경제</option>
+                        <option value="게임">게임</option>
+                        <option value="기타">기타</option>
+                    {% elif voca.tag == "스포츠" %}
+                        <option value="스포츠">스포츠</option>
+                        <option value="언어">언어</option>
+                        <option value="생활">생활</option>
+                        <option value="경제">경제</option>
+                        <option value="게임">게임</option>
+                        <option value="기타">기타</option>
+                    {% elif voca.tag == "생활" %}
+                        <option value="생활">생활</option>
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="경제">경제</option>
+                        <option value="게임">게임</option>
+                        <option value="기타">기타</option>
+                    {% elif voca.tag == "경제" %}
+                        <option value="경제">경제</option>
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="생활">생활</option>
+                        <option value="게임">게임</option>
+                        <option value="기타">기타</option>
+                    {% elif voca.tag == "게임" %}
+                        <option value="게임">게임</option>
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="생활">생활</option>
+                        <option value="경제">경제</option>
+                        <option value="기타">기타</option>
+                    {% elif voca.tag == "기타" %}
+                        <option value="기타">기타</option>
+                        <option value="언어">언어</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="생활">생활</option>
+                        <option value="경제">경제</option>
+                        <option value="게임">게임</option>
+                    {% endif %}
+                    {% else %}
                         <option value="null">태그 선택</option>
                         <option value="언어">언어</option>
                         <option value="스포츠">스포츠</option>
@@ -259,6 +304,7 @@
                         <option value="경제">경제</option>
                         <option value="게임">게임</option>
                         <option value="기타">기타</option>
+                    {% endif %}
                     </select>
                 </div>
                 <div class="col-md-1">
